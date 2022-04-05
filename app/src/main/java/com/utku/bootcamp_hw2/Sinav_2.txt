@@ -1,0 +1,67 @@
+Dikkat edilecek kriterler
+- OOP yapısı
+- Katmanlı mimari yapısı
+- İşlevsel tamamlanma
+
+Dikkat edilmeyecekler
+- Tasarım
+
+
+Son Teslim zamanı : 06.04.2022 23:59
+
+Teslim şekli : Github üzerine proje yüklenecek ve public link paylaşılacak
+
+
+Ödeme Takip
+
+Açılış ekranı 
+-----------------------------
+
+Ödeme tipleri listelenecek
+
+Ödeme tiplerinin başlığı ve ödeme periyodu(Yıllık, Aylık, haftalık) ve periyot günü (1. günü  vb.) bulunacak.
+
+Bunun yanında her liste elemanında ödeme ekle butonu olacak.
+
+Ödeme periyodu ve periyot günü zorunlu değildir.
+
+Üstte "Yeni ödeme tipi ekle" butonu olacak ve basıldığında Yeni ödeme tipi ekleme ekranı açılacak.
+
+Listedeki elemana basıldığında "Detay görüntüleme ekranı" açılacak ve üzerine basılan tip bilgileri bu ekrana aktarılacak.
+
+Liste elemanlarındaki "Ödeme ekle" butonuna basıldığında ödeme ekle ekranı açılacak.
+
+Yeni ödeme tipi ekle ekranı
+-----------------------------
+Ödeme tipinin başlığı yazılacak.
+
+Periyodu listeden seçilecek.
+Periyot günü elle yazılacak. Ancak bu alana sadece pozitif tamsayı girilebilecek ve periyoda uygun veriler olacak.
+
+Bilgiler girilip kaydet butonuna basıldığında eğer güncelleme ise o eleman veritabanında güncellenecek, yeni kayıt ise veritabanına kaydedilecek ve liste ekranına geri dönülecek.
+
+Düzenleme için gelinmiş ise en altta sil butonu olacak. Butona basıldığında silme için uyarı popupı çıkacak ve onaylarsa tip silinecek.
+
+Ödeme ekle ekranı
+-----------------------------
+Bu ekranda seçilen tipe ödeme eklenecektir.
+
+Ödeme miktarı girilecek bir alan olacak. Buraya ödeme tutarı girilecektir. 
+
+Ödeme tarihi alanı olacak. Varsayılan olarak mevcut tarih eklenecek. Tarih "30.03.2022" formatında olacak. 
+
+Tarih alanına basılarak tarih seçme komponenti açılarak tarih değiştirilebilecektir. İleri bir tarih seçilemeyecek.
+
+Kaydet butonuna basıldığında ödeme kaydedilecektir.
+
+
+Detay görüntüleme ekranı
+-----------------------------
+Tip ile ilgili detaylar görüntülenecektir. 
+
+Ekranın üstünde "Düzenle" butonu olacak ve basıldığında "Yeni ödeme tipi ekle ekranı" açılacak ve seçili tip gönderilerek güncelleme yapılması sağlanacaktır.
+
+En altta da ödeme geçmişi listelenecektir. Geçmişte sadece tarih ve tutar bulunacaktır. Ödeme geçmişi üzerine basıldığında silme için uyarı popupı çıkacak ve onaylarsa ödeme kaydı silinecek.
+
+Ödeme geçmişi listesinin hemen üstünde "Ödeme ekle" butonu olacak ve basıldığında ödeme ekle ekranı açılacak.
+
