@@ -42,7 +42,7 @@ class AddPaymentActivity : AppCompatActivity() {
         } else {
             val payment = Payment()
             payment.paymentTypeId = intent.getIntExtra("fk", 0)
-            checkDate(payment)
+            payment.date = date
 
 
             payment.amount = binding.eTPaymentAmount.text.toString().toFloat()
@@ -54,15 +54,7 @@ class AddPaymentActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkDate(payment: Payment) {
-        if (date == "" || date == null) {
-            val currentDate: String =
-                SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date())
-            payment.date = currentDate
-        } else {
-            payment.date = date
-        }
-    }
+
 
     private fun setDatePicker() {
         binding.datePicker.init(

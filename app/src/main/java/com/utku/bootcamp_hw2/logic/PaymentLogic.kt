@@ -5,15 +5,27 @@ import com.utku.bootcamp_hw2.DAL.PaymentOperation
 import com.utku.bootcamp_hw2.DAL.PaymentTypeOperation
 import com.utku.bootcamp_hw2.model.Payment
 import com.utku.bootcamp_hw2.model.PaymentType
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PaymentLogic {
     companion object {
         var payment = Payment()
         fun addPayment(context: Context, payment: Payment): Long {
             val paymentOperation = PaymentOperation(context)
+           this. payment=payment
+            checkDate(payment.date)
+            return paymentOperation.addPayment(this.payment)
 
-            return paymentOperation.addPayment(payment)
+        }
 
+        private fun checkDate(date:String) {
+            if (date == "" || date == null) {
+                val currentDate: String =
+                    SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date())
+                payment.date = currentDate
+            }
         }
 
         fun getPayments(context: Context, id: Int?, fk: Int?): ArrayList<Payment> {
@@ -28,4 +40,5 @@ class PaymentLogic {
             PaymentOperation(context).deletePaymentType(id)
         }
     }
+
 }
