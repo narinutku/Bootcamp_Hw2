@@ -9,6 +9,7 @@ import com.utku.bootcamp_hw2.databinding.ActivityAddPaymentBinding
 import com.utku.bootcamp_hw2.logic.PaymentLogic
 
 import com.utku.bootcamp_hw2.model.Payment
+import java.lang.Exception
 import java.text.SimpleDateFormat
 
 
@@ -43,14 +44,19 @@ class AddPaymentActivity : AppCompatActivity() {
             val payment = Payment()
             payment.paymentTypeId = intent.getIntExtra("fk", 0)
             payment.date = date
-
-
-            payment.amount = binding.eTPaymentAmount.text.toString().toFloat()
-            val record = PaymentLogic.addPayment(this, payment)
-            if (record > 0) {
-                Toast.makeText(this, "İşlem başarılı", Toast.LENGTH_LONG).show()
-                backToMainPage()
+            try {
+                payment.amount = binding.eTPaymentAmount.text.toString().toFloat()
+                val record = PaymentLogic.addPayment(this, payment)
+                if (record > 0) {
+                    Toast.makeText(this, "İşlem başarılı", Toast.LENGTH_LONG).show()
+                    backToMainPage()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this, "Ödeme tutarı boş bırakılamaz", Toast.LENGTH_LONG).show()
             }
+
+
+
         }
     }
 

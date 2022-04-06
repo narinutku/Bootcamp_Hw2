@@ -36,12 +36,45 @@ class AddPaymentTypeActivity : AppCompatActivity() {
         )
         binding.spinner.adapter = adapter
         binding.btnAddPaymentType.setOnClickListener {
-            addPaymentType()
+            if(intent.getBooleanExtra("isUpdate",false)){
+                updatePaymentType()
+            }
+            else{
+                addPaymentType()
+            }
+
         }
         binding.imBtnBack.setOnClickListener { backToMainPage() }
         binding.btnDeletePaymentType.setOnClickListener {
             showAlert()
         }
+    }
+
+    private fun updatePaymentType() {
+
+        if(binding.eTTitle.text.toString()==""){
+            Toast.makeText(
+                this,
+                "Ödeme Başlığı alanı boş bırakılamaz",
+                Toast.LENGTH_LONG
+            ).show()
+
+        }
+        else{
+            val paymentType = getPaymentType()
+            paymentType.id=fk
+            PaymentTypeLogic.updatePaymentType(this, paymentType,::backToMainPage)
+
+        }
+    }
+
+    private fun getPaymentType(): PaymentType {
+        val paymentType = PaymentType()
+        paymentType.title = binding.eTTitle.text.toString()
+        paymentType.paymentDayofPeriod = try { binding.eTDayofPeriod.text.toString().toInt() } catch (e: NumberFormatException) { null }
+
+        paymentType.paymentPeriod = binding.spinner.selectedItem as Period?
+        return paymentType
     }
 
     private fun showAlert() {
@@ -64,19 +97,31 @@ class AddPaymentTypeActivity : AppCompatActivity() {
     }
 
     private fun addPaymentType() {
-        val paymentType = PaymentType()
 
-        paymentType.title = binding.eTTitle.text.toString()
-        paymentType.paymentDayofPeriod = binding.eTDayofPeriod.text.toString().toInt()
-        paymentType.paymentPeriod = binding.spinner.selectedItem as Period?
-        val record = PaymentTypeLogic.addPaymentType(this, paymentType)
+        if(binding.eTTitle.text.toString()==""){
+            Toast.makeText(
+                this,
+                "Ödeme Başlığı alanı boş bırakılamaz",
+                Toast.LENGTH_LONG
+            ).show()
+
+        }
+        else{
+
+            val paymentType = getPaymentType()
+            val record = PaymentTypeLogic.addPaymentType(this, paymentType)
+            isSucces(record)
+        }
+    }
+
+    private fun isSucces(record: Long) {
         if (record > 0) {
             Toast.makeText(this, "İşlem başarılı", Toast.LENGTH_LONG).show()
             backToMainPage()
         } else if (record == -1L) {
             Toast.makeText(
                 this,
-                "Seçilen ödeme periyod günü seçilen periyodu aşmaktadır lütfen tekrar deneyiniz",
+                "Seçilen ödeme periyod günü periyot ile uyumsuzdur lütfen tekrar deneyiniz",
                 Toast.LENGTH_LONG
             ).show()
         }

@@ -16,7 +16,7 @@ class PaymentTypeViewHolder(
 ) : RecyclerView.ViewHolder(itemView) {
 
     var btnAddPayment: Button
-    var categoryId=0
+
 
     init {
 

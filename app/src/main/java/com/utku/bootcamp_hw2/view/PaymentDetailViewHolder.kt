@@ -16,7 +16,7 @@ class PaymentDetailViewHolder  (itemView: View,
         tvDate=itemView.findViewById(R.id.tvPaymentDay)
         tvAmount=itemView.findViewById(R.id.tvPaymentAmount)
         itemView.setOnClickListener {
-
+            itemClickDetail(absoluteAdapterPosition)
         }
     }
     fun bindData(payment: Payment){

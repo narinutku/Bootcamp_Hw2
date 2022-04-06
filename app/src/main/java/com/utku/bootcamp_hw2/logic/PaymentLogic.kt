@@ -36,8 +36,11 @@ class PaymentLogic {
             val paymentOperation = PaymentOperation(context)
             paymentOperation.updatePaymentType(payment)
         }
-        fun removePayment(context: Context,id: Int){
+        fun removePaymentsByFK(context: Context, id: Int){
             PaymentOperation(context).deletePaymentType(id)
+        }
+        fun removePayment(context: Context, id: Int){
+            PaymentOperation(context).deletePayment(id)
         }
     }
 

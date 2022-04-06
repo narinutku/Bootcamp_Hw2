@@ -67,6 +67,12 @@ class PaymentOperation(context: Context) {
         paymentDatabase!!.delete(TABLENAME, "$PAYMENTTYPEID = ?", arrayOf(id.toString()))
         close()
     }
+    fun deletePayment(id: Int) {
+
+        open()
+        paymentDatabase!!.delete(TABLENAME, "Id=?" , arrayOf(id.toString()))
+        close()
+    }
 
     private fun getAllPaymentTypes(): Cursor {
         val sorgu = "Select * from $TABLENAME"
